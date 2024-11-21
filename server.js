@@ -8,8 +8,23 @@ app.use(express.static('./public/assets'))
 
 
 
+
+
+app.use('/routes', require('./routes/router'))
+
+
 app.get('/', (req, res)=>{
-    res.render('index')
+
+    if (req.query.params = '/')
+    {
+        res.render('index', {route: "/"})
+        console.log('EMPTY')
+    }
+})
+
+
+app.get('/:r', (req, res)=>{
+    res.render('index', {route: req.params.r})
 })
 
 
