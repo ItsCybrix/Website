@@ -9,24 +9,21 @@
 <body>
     <div class="site-main">
         <div class="main-content">
-            <p style="color: aqua;">Cybrix Website version 1.0.1A</br>
+            <p style="color: aqua;">Cybrix Website version 1.0.1B</br>
             &copy;2024 ItsCybrix</p>
             <p>[ <span style="color: lime;">OK</span> ] Loading Website</p>
             <p>[ <span style="color: yellow;">WARN</span> ] <span style="color: red;">THIS SITE AND IT'S CONTENT IS CONSIDERED 18+, IF YOU'RE UNDER 18 PLEASE LEAVE IMMEDIATELY!</span></p>
-            <p>[ <span style="color: lime;">OK</span> ] Loading Navigation...</p>
-            <%- include('includes/nav.ejs') %>
             <p>[ <span style="color: lime;">ALIVE</span> ] General Status</p>
-            <p>[ <span style="color: magenta;">INFO</span> ] Online presence:</p>
 
-            <p>-- VRC: [ <span style="color: yellow;">Inactive</span> ] until 11/26/2024 - 37 Hours --</p>
-            <p>-- Resonite: [ <span style="color: red;">Banned</span> ] since 09/2024 2607 Hours --</p>
-            <p>-- Minecraft: [ <span style="color: lime;">ACTIVE</span> ] --</p>
 
-            <p>[ <span style="color: lime;">OK</span> ] Loading Page Content...</p>
-            <div class="content">
-                <iframe src="/routes/<%- route %>" style="border: none;" width="100%">
-                    <link rel="/css/main.css">
-                </iframe>
+            <div class="command-output">
+                <%- include('./commands/' + cmdInput) %>
+            </div>
+
+            <div class="term">
+                <form action="/">
+                    <input type="text" name="cmd" autofocus>
+                </form>
             </div>
     </div>
 </body>

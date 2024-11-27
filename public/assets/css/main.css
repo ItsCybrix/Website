@@ -13,11 +13,10 @@ body{
 li {
     list-style-type: none;  /* Remove default bullet or number */
   }
-li::before {
-    content: "-- ";
-  }
-  li::after {
-    content: " --";
+
+
+  .command-content{
+overflow-y: auto;
   }
   
   

@@ -7,25 +7,43 @@ app.set('views', './public/views/')
 app.use(express.static('./public/assets'))
 
 
-
-
-
-app.use('/routes', require('./routes/router'))
-
-
 app.get('/', (req, res)=>{
 
-    if (req.query.params = '/')
-    {
-        res.render('index', {route: "/"})
-        console.log('EMPTY')
+    let cmd = req.query.cmd
+
+    if(typeof(cmd) == undefined){
+        cmd = 'main';
     }
+
+
+
+    console.log(cmd)
+
+    if(cmd.includes('-') && cmd.includes(' ')){
+        cmd.split(' ')
+
+        console.log('ARG COMMAND')
+    }
+    
+    if(cmd == 'help'){
+        cmd = 'help'
+    }else if(cmd == 'gay yiff'){
+        cmd = 'gayYiff'
+    } else if(cmd = 'main'){
+        cmd = 'main'
+    }else{
+        cmd = 'KnotValid'
+    }
+
+    
+
+
+
+    res.render('index', {cmdInput: cmd})
 })
 
 
-app.get('/:r', (req, res)=>{
-    res.render('index', {route: req.params.r})
-})
+
 
 
 

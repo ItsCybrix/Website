@@ -11,6 +11,10 @@ router.get('/about', (req, res) => {
     res.render('route-views/about')
 })
 
+router.get('/olp', (req, res) => {
+    res.render('route-views/olp')
+})
+
 
 router.get('/general-status', (req, res) => {
     res.render('route-views/general-status')
