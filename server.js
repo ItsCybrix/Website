@@ -101,8 +101,28 @@ app.get('/', async(req, res) =>{
 
             
         }else{
-            cmd = 'knotValid'
-            res.status(404)
+            cmd = 'main'
+
+
+
+            music = await axios.get('https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=ItsCybrix&api_key=28d9a0d3f3307e2445a9b0c64f2b59ff&format=json', {headers: {'User-Agent': 'Cybrix/1.0'}})
+
+            console.log(music.data.recenttracks.track[0].artist["#text"])
+/*
+            if(music.data.recenttracks.track[0]){
+
+            }
+            */
+
+            
+
+            
+
+            res.locals.musicTitle = music.data.recenttracks.track[0].name
+            res.locals.musicArtist = music.data.recenttracks.track[0].artist["#text"]
+
+            
+
         }
 
 
