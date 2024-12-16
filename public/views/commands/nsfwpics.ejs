@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <img src="<%= yiff %>" height="621" width="auto">
+    <% images.forEach(image => { %>
+     
+        <img src="/static/images/nsfw/<%- image %>" height="621" width="auto"><br>
+
+    <% }) %>
 </body>
 </html>

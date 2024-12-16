@@ -9,20 +9,23 @@
 <body>
     <div class="site-main">
         <div class="main-content">
-            <p style="color: aqua;">Cybrix Website version 1.0.1B</br>
+            <p style="color: aqua;">Cybrix Website version <%- siteVer %></br>
             &copy;2024 ItsCybrix</p>
             <p>[ <span style="color: lime;">OK</span> ] Loading Website</p>
             <p>[ <span style="color: yellow;">WARN</span> ] <span style="color: red;">THIS SITE AND IT'S CONTENT IS CONSIDERED 18+, IF YOU'RE UNDER 18 PLEASE LEAVE IMMEDIATELY!</span></p>
+            <p>[ <span style="color: yellow;">WARN</span> ] <span style="color: red;">Asking me about Resonite will result in you being blocked (including from this site)</span></p>
             <p>[ <span style="color: lime;">ALIVE</span> ] General Status</p>
 
 
             <div class="command-output">
-                <%- include('./commands/' + cmdInput) %>
+                <p><%- cmdInput %></p>
+                <%- include('./commands/' + cmdView) %>
             </div>
 
             <div class="term">
                 <form action="/">
                     <input type="text" name="cmd" autofocus>
+
                 </form>
             </div>
     </div>
