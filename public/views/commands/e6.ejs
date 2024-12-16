@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <% e6.forEach(post => { %>
+        <a href="https://e621.net/posts/<%- post.id %>"><img src="<%- post.file.url %>" height="350" width="auto"></a>
+    <% }) %>
+</body>
+</html>

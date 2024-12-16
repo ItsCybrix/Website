@@ -5,6 +5,7 @@ const { memoryUsage } = require('process')
 var morgan = require('morgan')
 var path = require('path')
 var rfs = require('rotating-file-stream')
+var dotenv = require('dotenv').config()
 
 
 const app = express()
@@ -51,16 +52,6 @@ app.get('/', async(req, res) =>{
 
         console.log(cmd)
 
-        if(cmd.includes('-') && cmd.includes(' ')){
-            cmd.split(' ')
-    
-            if(cmd[0] == 'yiff' && cmd[1] == 'g'){
-                cmd = 'gayYiff'
-                console.log('F')
-            }else{
-                console.log(cmd)
-            }
-        }
         
         if(cmd == 'help'){
             cmd = 'help'
@@ -102,19 +93,39 @@ app.get('/', async(req, res) =>{
             
         }else if(cmd == 'main'){
             cmd = 'main'
+            
 
+            const lfmkey = process.env.lastFMKey
 
             
 
             music = await axios.get('https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=ItsCybrix&api_key=28d9a0d3f3307e2445a9b0c64f2b59ff&format=json', {headers: {'User-Agent': 'Cybrix/1.0'}})
 
-            console.log(music.data.recenttracks.track[0].artist["#text"])
 
 
             res.locals.musicTitle = music.data.recenttracks.track[0].name
             res.locals.musicArtist = music.data.recenttracks.track[0].artist["#text"]
 
 
+
+        }else if(cmd.startsWith('e6')){
+
+            console.log('e6')
+            if(cmd.includes(' ')){
+                splitcmd = cmd.split(' ')
+
+
+                if (splitcmd[1] == 'favs'){
+                    e6 = await axios.get('https://e621.net/posts.json?tags=fav:elo621b73+-type:webm', {headers: {'User-Agent': 'Cybrix/1.0'}})
+                    res.locals.e6 = e6.data.posts
+                }
+
+                cmd = splitcmd[0]
+            }
+
+        }else if(cmd == 'pcspecs'){
+
+            cmd = 'pcspecs'
 
         }else{
             cmd = 'knotValid'
