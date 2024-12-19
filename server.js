@@ -7,8 +7,11 @@ var path = require('path')
 var rfs = require('rotating-file-stream')
 var dotenv = require('dotenv').config()
 
+const db = require('./lib/dbConnector')
+
 
 const app = express()
+
 
 
 
@@ -25,6 +28,9 @@ var accessLogStream = rfs.createStream('access.log', {
 
 
 app.use(morgan('combined'))
+
+
+app.use(require('./middleware/securityManager'))
 
 app.set('view engine', 'ejs')
 app.set('views', './public/views/')
@@ -99,7 +105,7 @@ app.get('/', async(req, res) =>{
 
             
 
-            music = await axios.get('https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=ItsCybrix&api_key=28d9a0d3f3307e2445a9b0c64f2b59ff&format=json', {headers: {'User-Agent': 'Cybrix/1.0'}})
+            music = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=ItsCybrix&api_key=${lfmkey}&format=json`, {headers: {'User-Agent': 'Cybrix/1.0'}})
 
 
 
@@ -158,6 +164,7 @@ app.get('/', async(req, res) =>{
 
 
 app.get('*', (req, res)=>{
+    res.status(404)
     res.send('404')
 })
 
@@ -167,7 +174,7 @@ app.all('*', (req, res) =>{
     res.send('MEMTHOD NOT ALLOWED!')
 })
 
-app.use(require('./middleware/errorHandler'))
+//app.use(require('./middleware/errorHandler'))
 
 const port = process.env.HTTP_Port || 5050
 app.listen(port, ()=>{
