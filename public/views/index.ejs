@@ -3,31 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Internall screaming]</title>
+    <title>Cybrix.Dev</title>
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <div class="site-main">
+    <%- include('./includes/nav') %>
+
+    <div class="site">
         <div class="main-content">
-            <p style="color: aqua;">Cybrix Website version <%- siteVer %></br>
-            &copy;2024 ItsCybrix</p>
-            <p>[ <span style="color: lime;">OK</span> ] Loading Website</p>
-            <p>[ <span style="color: yellow;">WARN</span> ] <span style="color: red;">THIS SITE AND IT'S CONTENT IS CONSIDERED 18+, IF YOU'RE UNDER 18 PLEASE LEAVE IMMEDIATELY!</span></p>
-            <p>[ <span style="color: yellow;">WARN</span> ] <span style="color: red;">Asking me about Resonite will result in you being blocked (including from this site)</span></p>
-            <p>[ <span style="color: lime;">ALIVE</span> ] General Status</p>
+            <div class="content-title">WELCOME</div>
+            <p>Hello and welcome to my site!</p>
+            <p>My name is Cybrix! I'm 20 Years old DOB: (01/25/2004 04:12:14PM EST)</p>
+            <p>I'm a huge nerd! I like VR, Eletronics, Retro Computers, Radio broadcasting, Servers Linux (I use Arch btw) and some other things!</p>
+            <p>My current projects include:</p>
 
+                <li>-This website.</li>
+            <p>I sometimes dable in programming! My main languages are Node(JS) and C#</p>
 
-            <div class="command-output">
-                <p><%- cmdInput %></p>
-                <%- include('./commands/' + cmdView) %>
-            </div>
-
-            <div class="term">
-                <form action="/">
-                    <input type="text" name="cmd" autofocus>
-
-                </form>
-            </div>
+        </div>
     </div>
+    
 </body>
 </html>

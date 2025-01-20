@@ -1,61 +1,43 @@
-@font-face {
-    font-family: 'modern_dos';
-    src: url('/font/ModernDOS9x16.ttf');
-    
+@font-face{
+        font-family: "ModernDOS";
+        src:url("/font/ModernDOS8x16.ttf");
 }
 
 body{
-    background-color: black;
+    background-color: blue;
     color: silver;
-    font-family: 'modern_dos';
+    font-family: 'ModernDOS';
     font-size: 24px;
-}
-li {
-    list-style-type: none;  /* Remove default bullet or number */
-  }
 
-
-  .command-content{
-overflow-y: auto;
-  }
-  
-table{
-  background-color: silver;
-
-  color: black;
 }
 
-th{
-  border: 3px solid white;
-  border-spacing: 10000x;
-}
-td{
-  vertical-align: top;
+.site-nav{
+    background-color: silver;
 }
 
-td:nth-child(1),
-th:nth-child(1) {
-    background-color: lightpink;
+.site-nav a{
+color: black;
+padding: 16px;
+text-decoration: none;
+
 }
-td:nth-child(2),
-th:nth-child(2) {
-    background-color: lightgreen;
+.site-nav li{
+display: inline-block;
 }
-td:nth-child(3),
-th:nth-child(3) {
-    background-color: lightyellow;
+
+.site{
+    padding-top: 16px;
 }
-td:nth-child(4),
-th:nth-child(4) {
-    background-color: lightcoral;
+
+.main-content{
+    padding-top: 8px;
+    border: 2px solid silver;
+    text-align: center;
 }
-td:nth-child(5),
-th:nth-child(5) {
-    background-color: lightblue;
-}
-a:visited {
-  color: aqua;
-}
-a {
-  color: aqua;
+
+.content-title{
+    margin: auto;
+    background-color: silver;
+    color: blue;
+    width: max-content;
 }

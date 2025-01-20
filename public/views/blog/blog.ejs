@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybrix's Blog</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('../includes/nav') %>
+
+    <div class="site">
+        <div class="main-content">
+            <div class="content-title">
+                BLOG INDEX
+            </div>
+            <% if (posts == 0) { %>
+                No posts added yet.
+               <% }else{%>
+                <% posts.forEach(post => { %>
+                    <article>
+                        <a href="/blog/posts/<%- post.ID %>">
+                    <%- post.title %>
+
+                </a>
+                    
+                    </article>
+                <% }) %>
+                <%} %>
+        </div>
+    </div>
+
+
+</body>
+</html>
