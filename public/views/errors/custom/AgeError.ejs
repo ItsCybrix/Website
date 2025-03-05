@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: red;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-main">
+        <div class="main-content" style="margin: auto; text-align: center;">
+            <h1>UNAUTHORIZED!!! Error 404!</h1>
+            <p>YOU MUST BE OVER THE AGE OF 18 TO VIEW THIS SITE! Please confirm is you are over 18</p>
+
+            <form method="post" action="/api/ageVerify">
+                <p>Are you the 18 or older?</p>
+                <input type="radio" name="over18" id="over18" value="true">
+                <label for="over18">Yes</label><br>
+                <input type="radio" name="over18" id="under18" value="false">
+                <label for="under18">No</label><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

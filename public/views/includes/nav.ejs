@@ -1,6 +1,20 @@
-<div class="site-nav">
-    <li><a href="/">Home</a></li>
-    <li><a href="/blog">Blog <span style="color: red">(SOON)</span></a></li>
-    <li><a href="/hw-wishlist">Wishlist (Parts and Hardware) <span style="color: red">(SOON)</span></a></li>
+<li>
+    <a href="/">Home</a>
+</li>
 
-</div>
+
+<li>
+    <a href="/blog">Blog</a>
+</li>
+
+<li>
+    <a href="/users/login">Login / Register</a>
+</li>
+
+<li>
+    <a href="/kinks">Kinks</a>
+</li>
+
+<% if (typeof user != "Undefined") { %>
+ <li><a href="/admin">Admin Panel</a></li>
+<% } %>

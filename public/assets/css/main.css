@@ -1,43 +1,46 @@
-@font-face{
-        font-family: "ModernDOS";
-        src:url("/font/ModernDOS8x16.ttf");
-}
+@font-face {
+    font-family: "Barlow";
+    src: url('/font/BarlowCondensed.ttf');
+  }
 
 body{
-    background-color: blue;
+    background-color: rgb(36,36,36);
     color: silver;
-    font-family: 'ModernDOS';
+    font-family: "Barlow";
     font-size: 24px;
 
 }
 
 .site-nav{
-    background-color: silver;
+    text-align: center;
+    margin: auto;
+    border-bottom: 2px solid #fd3777;
+}
+
+.site-nav li{
+    display: inline-block;
+    padding-left: 16px;
 }
 
 .site-nav a{
-color: black;
-padding: 16px;
-text-decoration: none;
-
+    font-size: 24px;    
+    text-transform: uppercase;
+    color: #2de2e6
 }
-.site-nav li{
-display: inline-block;
+a{
+    text-decoration: none;
+    color: #2de2e6;
 }
 
-.site{
-    padding-top: 16px;
+a:hover{
+    color: #541388;
+}
+
+a:visited{
+    color: #2de2e6;
 }
 
 .main-content{
-    padding-top: 8px;
-    border: 2px solid silver;
     text-align: center;
-}
-
-.content-title{
     margin: auto;
-    background-color: silver;
-    color: blue;
-    width: max-content;
 }
