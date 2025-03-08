@@ -20,6 +20,8 @@ const { v4: uuidv4 } = require('uuid');
 
 app.use(cookies());
 
+app.use(require('./middleware/securityManager'))
+
 app.use(bodyParser.urlencoded({ extended: false }))
 
 
