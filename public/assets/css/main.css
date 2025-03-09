@@ -44,3 +44,10 @@ a:visited{
     text-align: center;
     margin: auto;
 }
+
+table, th, td{
+    border: 1px solid silver;
+
+}
+
+

@@ -8,10 +8,8 @@ const securityManager = function (req, res, next){
         if (err) {
           res.send("DB.query.error" + err)
         }
-
         if(result.length > 0){
           res.locals.user = result[0]
-          console.log(res.locals.user)
           next()
         }else{
           next()
