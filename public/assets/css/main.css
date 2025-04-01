@@ -8,6 +8,7 @@ body{
     color: silver;
     font-family: "Barlow";
     font-size: 24px;
+    margin: auto;
 
 }
 
@@ -48,6 +49,14 @@ a:visited{
 table, th, td{
     border: 1px solid silver;
 
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    width: 100vw
 }
 
 

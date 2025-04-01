@@ -1,5 +1,6 @@
 const express = require('express');
 const config = require('dotenv').config();
+const fs = require('fs')
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -15,6 +16,8 @@ const md5 = require('md5')
 
 const { v4: uuidv4 } = require('uuid');
 
+const siteVersion = fs.readFileSync('./.version')
+
 
 
 
@@ -24,7 +27,13 @@ app.use(require('./middleware/securityManager'))
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
+const fileVars = function(req, res, next){
+  res.locals.siteVersion = siteVersion;
+  next();
+}
 
+
+app.use(fileVars);
 
 // parse application/x-www-form-urlencoded
 
@@ -102,4 +111,6 @@ app.get('/:route', (req, res)=>{
         });
       });
 
-app.listen(5050);
+app.listen(5050, ()=>{
+  console.log('Cybrix web service version '+ siteVersion +' is running on local port 5050')
+});
