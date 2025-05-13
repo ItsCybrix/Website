@@ -118,6 +118,8 @@ admin.post('/pages/:id/edit', (req, res)=>{
           res.redirect('/admin/pages')
         }
         })
+      }else{
+        res.redirect('/admin/pages')
       }
     }
   })
