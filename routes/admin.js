@@ -4,7 +4,16 @@ const db = require('../lib/dbConnector')
 
 const admin = express.Router()
 
-admin.use(require('../middleware/checkAdmin'))
+
+admin.use( (req, res, next)=>{
+  if(res.locals.user.level == "Admin" || res.locals.user.level == "Owner"){
+    next()
+  }else{
+    console.log("Security Check Failed!")
+    console.log(res.locals.user)
+    res.redirect('/')
+  }
+})
 
 admin.get('/', (req, res) =>{
     res.render('./admin/index')

@@ -17,6 +17,6 @@
     <a href="/kinks">Kinks</a>
 </li>
 
-<% if (typeof user != "Undefined") { %>
+<% if (user.level == "Admin" || user.level == "Owner") { %>
  <li><a href="/admin">Admin Panel</a></li>
 <% } %>

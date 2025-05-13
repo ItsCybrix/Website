@@ -23,7 +23,7 @@ const siteVersion = fs.readFileSync('./.version')
 
 app.use(cookies());
 
-app.use(require('./middleware/securityManager'))
+app.use(require('./middleware/userManager'))
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -40,7 +40,7 @@ app.use(fileVars);
 // parse application/json
 app.use(bodyParser.json())
 
-app.use(require('./middleware/securityManager'))
+app.use(require('./middleware/userManager'))
 
 
 
@@ -50,7 +50,7 @@ app.set('views', './public/views');
 
 app.get('/', (req, res)=>{
     res.render('index');
-    console.log(req.cookies);
+    //console.log(req.cookies);
 })
 
 app.get('/users/login', (req, res)=>{

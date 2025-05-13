@@ -1,7 +1,7 @@
 const db = require('../lib/dbConnector')
 
 
-const securityManager = function (req, res, next){
+const userManager = function (req, res, next){
 
 
     db.query("SELECT * FROM users WHERE sessionToken = ?",  [req.cookies.sessionToken], function (err, result) {
@@ -12,6 +12,8 @@ const securityManager = function (req, res, next){
           res.locals.user = result[0]
           next()
         }else{
+          res.locals.user = ""
+          console.log("NO USER DEFINED!")
           next()
         }
       });
@@ -20,4 +22,4 @@ const securityManager = function (req, res, next){
 
 }
 
-module.exports = securityManager;
+module.exports = userManager;
