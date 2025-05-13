@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="site-main">
+        <div class="site-nav">
+        <%- include('../includes/nav') %>
+        </div>
+        <div class="main-content">
+            <form action="/admin/pages/<%- page.ID %>/delete" method="post" style="border: 1px solid #2de2e6;  margin: auto; background-color: black; height: fit-content; width: 25vw;">
+                <h1>Type <span style="color: #2de2e6; background-color: rgb(36, 36, 36);"><%- page.title %></span> to confirm page deletion</h1>
+
+                <input type="text" name="confirm">
+
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

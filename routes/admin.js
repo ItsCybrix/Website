@@ -19,6 +19,7 @@ admin.get('/', (req, res) =>{
     res.render('./admin/index')
 })
 
+
 admin.get('/pages', (req, res)=>{
 
     db.query("SELECT * FROM pages", function (err, result) {
@@ -46,10 +47,6 @@ admin.post('/pages/new', (req, res) =>{
       res.redirect('/admin/pages')
     }
   });
-
-
-
-
 })
 
 
@@ -81,7 +78,50 @@ admin.post('/pages/:id/edit', (req, res)=>{
     }
 
   })
+
+
+
+
+
+
+
+
 })
+
+  admin.get('/pages/:id/delete', (req, res) =>{
+      db.query("SELECT * FROM pages WHERE ID=?", [req.params.id], function (err, result){
+    if(err){
+      res.send('DB.QUERY.ERROR: ' + err)
+    }
+
+    if(result.length > 0){
+      res.locals.page = result[0]
+
+      res.render('./admin/pagedeleteconfirm')
+    }
+  })
+  })
+
+    admin.post('/pages/:id/delete', (req, res) =>{
+      db.query("SELECT * FROM pages WHERE ID=?", [req.params.id], function (err, result){
+    if(err){
+      res.send('DB.QUERY.ERROR: ' + err)
+    }
+
+    if(result.length > 0){
+
+      if(req.body.confirm == result[0].title){
+        db.query("DELETE FROM pages WHERE ID=?", [req.params.id], function(err2, result2){
+        if(err){
+          res.send('DB.QUERY.ERROR: ' + err)
+        }else{
+          res.redirect('/admin/pages')
+        }
+        })
+      }
+    }
+  })
+  })
 
 
 
