@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Index - Cybrix.dev</title>
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body>
+    <div class="site-main">
+        <div class="site-nav">
+            <%- include('../includes/nav') %>
+        </div>
+        <div class="main-content">
+            <div class="wipwarn" style="background-color: rgba(255, 0, 0, .75);">
+                <h3>The blog system is currently under development. Expect bugs and other issues.</h3>
+            </div>
+                <div class="article" style="background-color: rgba(0, 0, 0, .75); ">
+                    <h1><%- article.title %></h1>
+
+                    <div class="articles-content">
+                        <%- article.content %>
+                    </div>
+                    <p>Posted: <span style="color: #2de2e6;"><%- article.date_added %></span> By: </p>
+                    <p>Category: <a href="/blog/category/<%- article.category %>"><%- article.category %></a></p>
+                </div>
+
+
+
+        </div>
+    </div>
+    
+</body>
+</html>

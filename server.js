@@ -103,6 +103,8 @@ app.post('/users/login', (req, res)=>{
 
 })
 
+app.use('/blog', require('./routes/blog'))
+
 app.use('/admin', require('./routes/admin'))
 
 app.get('/:route', (req, res)=>{

@@ -51,6 +51,22 @@ table, th, td{
 
 }
 
+.articles-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgba(0, 0, 0, .75);
+    padding: 10px;
+}
+
+.articles-container > a {
+  background-color: rgba(36, 36, 36, .75);
+  border: 1px solid #2de2e6;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+}
+
+
 .footer{
     position: absolute;
     bottom: 0;
