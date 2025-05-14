@@ -87,7 +87,7 @@ app.post('/users/login', (req, res)=>{
     let password = md5(req.body.password)
 
     if(result.length > 0){
-      if([password == result[0].password]){
+      if(password == result[0].password){
         res.cookie('sessionToken', uuid, {maxAge: 1000 * 60 * 86400 * 30 * 12, httpOnly: true})
 
         db.query("UPDATE users SET sessionToken=? WHERE username=?", [uuid ,req.body.username], function (err, result){
@@ -95,7 +95,9 @@ app.post('/users/login', (req, res)=>{
         })
 
         res.redirect('/');
-      };      
+      }else{
+        res.redirect('/users/login')
+      }      
     }
 
   })

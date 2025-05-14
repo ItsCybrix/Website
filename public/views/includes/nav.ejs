@@ -9,9 +9,12 @@
     <a href="/blog">Blog</a>
 </li>
 
-<li>
+<% if (!locals.user) { %>
+    <li>
     <a href="/users/login">Login / Register</a>
 </li>
+<% } %>
+
 
 <li>
     <a href="/kinks">Kinks</a>
