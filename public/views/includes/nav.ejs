@@ -17,6 +17,10 @@
     <a href="/kinks">Kinks</a>
 </li>
 
-<% if (user.level == "Admin" || user.level == "Owner") { %>
- <li><a href="/admin">Admin Panel</a></li>
+<% if (locals.user) { %>
+    <% if (user.level == "Admin" || user.level == "Owner") { %>
+        <li><a href="/admin">Admin Panel</a></li>
+    <% } %>
 <% } %>
+
+
