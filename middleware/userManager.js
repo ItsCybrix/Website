@@ -12,7 +12,6 @@ const userManager = function (req, res, next){
           res.locals.user = result[0]
           next()
         }else{
-          res.locals.user = ""
           console.log("NO USER DEFINED!")
           next()
         }

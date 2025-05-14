@@ -35,6 +35,17 @@ const fileVars = function(req, res, next){
 
 app.use(fileVars);
 
+app.use(function(req, res, next){
+  if(req.cookies.ContentWarnDismissed){
+    res.locals.hideContentWarning = true
+    next();
+  }else{
+    res.locals.hideContentWarning = false
+    next();
+
+  }
+})
+
 // parse application/x-www-form-urlencoded
 
 // parse application/json

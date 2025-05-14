@@ -1,0 +1,22 @@
+        <div class="main-content">
+            <% if (!hideContentWarning) { %>
+                <div class="contentwarning" id="ContentWarning" style="background-color: rgba(255, 0, 0, .75);">
+                <h1>This site and it's content should be traated as 18+!</h1>
+                <h1>If your are not 18+ or have issues with such content please leave now</h1>
+                <span style="color: black;" onclick="contentWarnDismiss()">Never show this on this device again.</span>
+            </div>
+            <% } %>
+
+
+<script>
+    function contentWarnDismiss(){
+  const d = new Date();
+  d.setTime(d.getTime() + (365*24*60*60*1000*5));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = "ContentWarnDismissed" + "=" + true + ";" + expires + ";path=/";
+
+  var contentWarning = document.getElementById("ContentWarning");
+
+  contentWarning.style.display = "none";
+}
+</script>
