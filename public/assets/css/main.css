@@ -1,78 +1,56 @@
 @font-face {
-    font-family: "Barlow";
-    src: url('/font/BarlowCondensed.ttf');
-  }
+    font-family: 'ModernDos';
+    src: url('/font/ModernDOS8x8.ttf');
+}
+  
 
 body{
-    background-color: rgb(36,36,36);
-    color: silver;
-    font-family: "Barlow";
+    background-color: black;
+    margin: 0;
+}
+
+.site-header{
+    background-color: blue;
+    width: 100vw;
+    height: 32px;
+    margin-bottom: 16px;
+}
+
+.site-header a{
+    color: white;
     font-size: 24px;
-    margin: auto;
-
+    font-family: 'ModernDos';
+    text-decoration: none;
+    padding-right: 8px;
 }
 
-.site-nav{
-    text-align: center;
-    margin: auto;
-    border-bottom: 2px solid #fd3777;
-}
-
-.site-nav li{
-    display: inline-block;
-    padding-left: 16px;
-}
-
-.site-nav a{
-    font-size: 24px;    
-    text-transform: uppercase;
-    color: #2de2e6
-}
 a{
     text-decoration: none;
-    color: #2de2e6;
 }
 
-a:hover{
-    color: #541388;
+.site-header a:hover{
+    color: cyan;
+    font-size: 28px;
+    font-family: 'ModernDos';
+    text-decoration: none;
+    padding-right: 8px;
 }
 
-a:visited{
-    color: #2de2e6;
-}
 
-.main-content{
-    text-align: center;
+
+
+
+.centered-box{
+    background-color: silver;
     margin: auto;
-}
-
-table, th, td{
-    border: 1px solid silver;
-
-}
-
-.articles-container{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    background-color: rgba(0, 0, 0, .75);
-    padding: 10px;
-}
-
-.articles-container > a {
-  background-color: rgba(36, 36, 36, .75);
-  border: 1px solid #2de2e6;
-  padding: 10px;
-  font-size: 30px;
-  text-align: center;
-}
-
-
-.footer{
-    position: absolute;
-    bottom: 0;
-    margin: auto;
+    margin-bottom: 25px;
+    width: 50%;
+    font-size: 24px;
     text-align: center;
-    width: 100vw
+    opacity: 1;
+    padding: 8px;
+    top: 50;
+    left: 50;
+    color: black;
+    font-family: 'ModernDos';
 }
-
-
