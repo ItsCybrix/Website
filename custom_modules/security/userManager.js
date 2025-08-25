@@ -15,17 +15,19 @@ function userManager(req, res, next){
         if (result.length === 0) {
             // Invalid/expired token
             return res.redirect('/users/login');
-        }
-
-        // Attach user to request object for later use
+        }else{
+                    // Attach user to request object for later use
         req.user = result[0];
 
         // ✅ Allow request to continue
         next();
+        }
+
+
     });
-    next();
+    }else{
+        next();
     }
-    next();
 
 
 }
