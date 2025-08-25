@@ -3,6 +3,7 @@ const db = require('../sql/db_connector');
 function userManager(req, res, next){
 
     console.log(req.url)
+    console.log(req.ip)
 
     if (req.cookies?.SessionToken){
             // Check if sessionToken exists in DB

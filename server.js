@@ -18,6 +18,7 @@ app.use(bodyParser.json())
 app.use(cookieParser());
 
 app.use(require('./custom_modules/security/userManager'))
+app.use(require('./custom_modules/security/requestValidator'))
 
 app.get('/', (req, res)=>{
     res.render('index')
