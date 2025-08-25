@@ -25,6 +25,8 @@ function userManager(req, res, next){
     });
     next();
     }
+    next();
+
 
 }
 
