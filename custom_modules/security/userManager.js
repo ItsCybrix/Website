@@ -1,36 +1,28 @@
 const db = require('../sql/db_connector');
 
-function userManager(req, res, next){
+function userManager(req, res, next) {
+    const token = req.cookies?.SessionToken;
 
-    console.log(req.url)
-    console.log(req.ip)
+    if (!token) {
+        res.locals.user = null; // ensure always defined
+        return next();
+    }
 
-    if (req.cookies?.SessionToken){
-            // Check if sessionToken exists in DB
-    db.query("SELECT * FROM users WHERE sessionToken = ?", [req.cookies?.SessionToken], function (err, result) {
+    db.query("SELECT * FROM users WHERE sessionToken = ?", [token], (err, result) => {
         if (err) {
             console.error("DB error in middleware:", err);
             return res.status(500).send("Server error");
         }
 
         if (result.length === 0) {
-            // Invalid/expired token
-            return res.redirect('/users/login');
-        }else{
-                    // Attach user to request object for later use
-        req.user = result[0];
-
-        // ✅ Allow request to continue
-        next();
+            res.locals.user = null;
+            return next();
         }
 
-
-    });
-    }else{
+        // ✅ Now available in templates
+        res.locals.user = result[0];
         next();
-    }
-
-
+    });
 }
 
-module.exports = userManager
+module.exports = userManager;
