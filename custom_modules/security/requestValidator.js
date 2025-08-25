@@ -1,7 +1,7 @@
 const db = require('../sql/db_connector');
 
 function userManager(req, res, next) {
-    const ip = req.ip; // needs app.set('trust proxy', true) behind nginx
+    const ip = req.ip; // make sure app.set('trust proxy', true) behind nginx
     const banned_routes = ['/wp-admin'];
     const threshold = 3; // block after 3 hits
 
@@ -11,20 +11,36 @@ function userManager(req, res, next) {
             return res.status(500).send("Server error");
         }
 
-        // Not in banned list → let them through
+        // Not in banned list
         if (result.length === 0) {
-            return next();
+            // If they’re on a honeypot route → insert them into table with hits=1
+            if (banned_routes.includes(req.url)) {
+                db.query(
+                    "INSERT INTO banned_ips (ip, hits, reason) VALUES (?, ?, ?)",
+                    [ip, 1, "Honeypot route access"],
+                    function (err2) {
+                        if (err2) console.error("DB error inserting IP:", err2);
+                        console.log(`⚠️ New IP logged: ${ip} accessed ${req.url} (1/${threshold})`);
+                        next();
+                    }
+                );
+            } else {
+                // Normal route and not in banned list → allow
+                return next();
+            }
+            return;
         }
 
+        // Already in banned list
         const banRecord = result[0];
         let newHits = banRecord.hits;
 
-        // Case 1: If request is NOT a honeypot route → always let them pass
+        // If request is NOT a honeypot route → allow
         if (!banned_routes.includes(req.url)) {
             return next();
         }
 
-        // Case 2: If it IS a honeypot route, increment hits
+        // Honeypot route → increment hits
         newHits++;
 
         db.query("UPDATE banned_ips SET hits = ? WHERE ip = ?", [newHits, ip], function (err2) {
@@ -33,13 +49,11 @@ function userManager(req, res, next) {
                 return res.status(500).send("Server error");
             }
 
-            // If over threshold → block
             if (newHits >= threshold) {
                 console.log(`🚫 Blocked IP ${ip} after ${newHits} hits on honeypot route ${req.url}`);
                 return res.status(403).send('🚫 Your IP is banned from this server. Reason: ' + banRecord.reason);
             }
 
-            // Otherwise let them through (warning stage)
             console.log(`⚠️ Honeypot hit from ${ip} (${newHits}/${threshold})`);
             next();
         });
