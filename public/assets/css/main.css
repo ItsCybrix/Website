@@ -44,7 +44,6 @@ a{
     background-color: silver;
     margin: auto;
     margin-bottom: 25px;
-    width: 50%;
     font-size: 24px;
     text-align: center;
     opacity: 1;
@@ -53,4 +52,26 @@ a{
     left: 50;
     color: black;
     font-family: 'ModernDos';
+}
+
+.blurbs {
+    position: fixed;
+    top: 46px;           /* push it down a bit below the navbar */
+    right: 20px;          /* spacing from the right edge */
+    width: 320px;         /* give it a consistent width */
+    background-color: silver;
+    color: black;
+    padding: 10px;
+    border: 2px solid black;
+    font-family: 'ModernDos';
+    font-size: 24px;
+    text-align: center;
+    
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    color: lime;
+    width: 100%;
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register an account - Cybrix.dev</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="site-main">
+        <div class="site-header">
+            <%- include('../includes/header') %>
+        </div>
+        <div class="main-content">
+            <div class="centered-box" style="max-width: fit-content;">
+                <form action="/users/new" method="post">
+                    <h1>New user registration form</h1>
+                    <label for="email">Please Enter your email address</label><br>
+                    <input type="email" name="email" placeholder="E-Mail" id="email" required><br>
+
+                    <label for="username">Please Enter your desired username</label><br>
+                    <input type="text" name="username" placeholder="Desired Username" id="username" required><br>
+
+                    <label for="password1">Please Enter your desired password <span style="color: red;">Passwords are strored as a one-way md5 hash.</span></label><br>
+                    <input type="password" name="password1" placeholder="Password" id="password" required><br>
+                    <label for="password2">Please Re-enter your password</label><br>
+                    <input type="password" name="password2" placeholder="Re-enter your password" id="password2" required><br>
+                    <button type="submit">Register</button> <button type="reset">Reset form</button>
+                    <p>Already have an account? sign-in <a href="/users/login">here</a></p>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <%- include('../includes/footer') %>
+        </div>
+    </div>
+    
+</body>
+</html>

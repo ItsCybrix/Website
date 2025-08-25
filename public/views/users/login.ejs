@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register an account - Cybrix.dev</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="site-main">
+        <div class="site-header">
+            <%- include('../includes/header') %>
+        </div>
+        <div class="main-content">
+            <div class="centered-box" style="max-width: fit-content;">
+                <form action="/users/login" method="post">
+                    <h1>User login form</h1>
+                    <input type="text" name="username" placeholder="Username" id="username" required><br>
+
+                    <label for="password">Please password</label><br>
+                    <input type="password" name="password" placeholder="Password" id="password" required><br>
+                    <button type="submit">login</button> <button type="reset">Reset form</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <%- include('../includes/footer') %>
+        </div>
+    </div>
+    
+</body>
+</html>
