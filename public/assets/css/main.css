@@ -7,6 +7,7 @@
 body{
     background-color: black;
     margin: 0;
+    color: silver;
 }
 
 .site-header{
@@ -67,6 +68,18 @@ a{
     font-family: 'ModernDos';
     font-size: 24px;
     text-align: center;
+    
+}
+.admin-nav {
+    position: fixed;
+    top: 46px;           /* push it down a bit below the navbar */
+    width: 320px;         /* give it a consistent width */
+    background-color: silver;
+    color: black;
+    padding: 10px;
+    border: 2px solid black;
+    font-family: 'ModernDos';
+    font-size: 24px;
     
 }
 .footer{

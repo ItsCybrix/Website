@@ -19,6 +19,10 @@ app.use(cookieParser());
 
 app.use(require('./custom_modules/security/userManager'))
 app.use(require('./custom_modules/security/requestValidator'))
+app.use(require('./custom_modules/globals'))
+
+
+
 
 app.get('/', (req, res)=>{
     res.render('index')
@@ -27,7 +31,27 @@ app.get('/', (req, res)=>{
 
 
 app.use('/users', require('./routes/users'))
+app.use('/sl', require('./routes/linkShortener'))
+app.use('/admin', require('./routes/admin'))
 
+app.get('/:page', (req, res)=>{
+        db.query("SELECT * FROM pages WHERE url = ?", [req.params.page], (err, result) => {
+        if (err) {
+            console.error("DB error in middleware:", err);
+            return res.status(500).send("Server error");
+        }
+
+        if (result.length === 0) {
+            res.status(404)
+            res.render('error/404')
+        }else{
+          res.locals.content = result[0].content  
+
+
+          res.render('template')
+        }
+    })
+})
 
 app.use('/',(req, res)=>{
     res.render('error/404');

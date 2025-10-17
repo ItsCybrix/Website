@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Admin Dashboard</title>
+    <style>
+        tr:nth-child(even), th:nth-child(even) {
+  background-color: #D6EEEE;
+}
+    </style>
+</head>
+<body>
+    <div class="site-main">
+        <div class="site-header">
+            <%- include('../includes/header') %>
+        </div>
+        <div class="main-content">
+            <div class="admin-nav">
+                <a href="/admin/PageBuilder">PageBuilder</a>
+            </div>
+
+            <div class="centered-box">
+                <table>
+                    <tr>
+                        <td>ID</td>
+                        <td>TITLE</td>
+                        <td>URL</td>
+                        <td>ACTIONS</td>
+                    </tr>
+                    <% pages.forEach(page => { %>
+                            <td><%= page.ID %></td>
+                            <td><%= page.title %></td>
+                            <td><%= page.url %></td>
+                            <td><a href="/<%- page.url %>" target="_blank"><img src="/img/icons/win98/msagent-1.png"></a> <a href="/admin/pagebuilder/edit/<%- page.ID %>"><img src="/img/icons/win98/themes-1.png"></a> <a href="/admin/pagebuilder/delete/<%- page.ID %>"><img src="/img/icons/win98/no-0.png"></a></td>
+                        </tr>
+                    <% }) %>
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
