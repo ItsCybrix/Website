@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog index - Cybrix's blog</title>
     <link rel="stylesheet" href="/css/main.css">
-    <title>Admin Dashboard</title>
 </head>
 <body>
     <div class="site-main">
@@ -12,11 +12,15 @@
             <%- include('../includes/header') %>
         </div>
         <div class="main-content">
-            <div class="admin-nav">
-                <a href="/admin/PageBuilder">PageBuilder</a><br>
-                <a href="/admin/blogTools">BlogTools</a>
+            <div class="centered-box">
+                <span style="color: red;">BLOG ERROR: <%- error %></span>
             </div>
+            <div class="blurbs">
+            </div>
+
         </div>
+        <div class="footer"><%- include('../includes/footer') %></div>
     </div>
+    
 </body>
 </html>

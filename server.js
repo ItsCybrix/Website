@@ -32,6 +32,9 @@ app.get('/', (req, res)=>{
 
 app.use('/users', require('./routes/users'))
 app.use('/sl', require('./routes/linkShortener'))
+app.use('/blog', require('./routes/blog'))
+
+
 app.use('/admin', require('./routes/admin'))
 
 app.get('/:page', (req, res)=>{

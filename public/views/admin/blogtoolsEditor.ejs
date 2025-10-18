@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css">
+  <title>Admin Dashboard</title>
+  <style>
+    tr:nth-child(even), th:nth-child(even) {
+      background-color: #D6EEEE;
+    }
+    #editor {
+      background: white;
+      height: 300px;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="site-main">
+    <div class="site-header">
+      <%- include('../includes/header') %>
+    </div>
+    <div class="main-content">
+      <div class="admin-nav">
+        <a href="/admin/PageBuilder">BlogTools Editor</a>
+      </div>
+
+      <div class="centered-box">
+        <form action="/admin/blogtools/edit/<%- post.ID %>" method="post">
+          <label for="title">Title of the post.</label><br>
+          <input type="text" name="title" id="title" value="<%= post.title %>"><br>
+
+          <label for="url">URL of the post.</label><br>
+          <input type="text" name="url" id="url" value="<%= post.url %>"><br>
+
+          <label for="category">Category.</label><br>
+          <input type="text" name="category" id="category" value="<%= post.category %>"><br>
+
+          <label for="content">Page content.</label><br>
+
+          <!-- Quill editor container -->
+          <div id="editor"><%- post.content %></div>
+
+          <!-- Hidden input to send the HTML to backend -->
+          <textarea name="content" id="content" style="display:none;"></textarea>
+
+          <br>
+          <button type="submit">Save page</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load Quill -->
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+  <script>
+    // Initialize Quill
+    const quill = new Quill('#editor', {
+      theme: 'snow',
+      placeholder: 'Write your post content here...',
+    });
+
+    // When form is submitted, copy HTML content from Quill to hidden textarea
+    const form = document.querySelector('form');
+    form.onsubmit = function() {
+      const content = document.querySelector('#content');
+      content.value = quill.root.innerHTML; // copy editor HTML
+    };
+  </script>
+</body>
+</html>

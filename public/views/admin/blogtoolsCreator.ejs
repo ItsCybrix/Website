@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Admin Dashboard</title>
+    <style>
+        tr:nth-child(even), th:nth-child(even) {
+  background-color: #D6EEEE;
+}
+    </style>
+
+
+    <!-- Include stylesheet -->
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="site-main">
+        <div class="site-header">
+            <%- include('../includes/header') %>
+        </div>
+        <div class="main-content">
+            <div class="admin-nav">
+                <a href="/admin/PageBuilder">BlogTools Creator</a>
+            </div>
+
+            <div class="centered-box">
+                <form action="/admin/blogtools/new/" method="post">
+                    <label for="title" >Title of the post.</label><br>
+                    <input type="text" name="title" id="title"><br>
+                    <label for="url">URL of the post.</label><br>
+                    <input type="text" name="url" id="url"><br>
+                    <input type="category" name="category" id="category"><br>
+                    <label for="title">Page content.</label><br>
+                    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+                    <textarea name="content" style="text-align: left;" id="content"></textarea>
+                    <button type="submit">Save page</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Initialize Quill editor -->
+<script>
+  const quill = new Quill('#content', {
+    theme: 'snow'
+  });
+</script>
+</body>
+</html>
