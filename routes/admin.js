@@ -1,9 +1,12 @@
-const express =  require('express')
+const express =  require('express');
+const axios = require('axios');
 
 const admin = express.Router()
 
 
 const db = require('../custom_modules/sql/db_connector')
+
+const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1442588448685953044/r93udVau_n6VvUTCvE1NK9Xxb2DQPQUWq06jgpjI41TZrdnj1FF7pKnoR-G5o9drFnp0"
 
 // === Middleware: check admin ===
 function requireAdmin(req, res, next) {
@@ -135,14 +138,38 @@ admin.post('/blogtools/new', (req, res) => {
 
     db.query(
         "INSERT INTO blog (title, url, category, content) VALUES (?, ?, ?, ?)",
-        [req.body.title, req.body.url, req.body.category,  req.body.content],
-        (err, result) => {
+        [req.body.title, req.body.url, req.body.category, req.body.content],
+        async (err, result) => {
+
             if (err) {
                 console.error("DATABASE ERROR:", err);
                 return res.status(500).send("DATABASE ERROR " + err.message);
             }
 
-            console.log("Inserted ID:", result.insertId); // The new record ID
+            console.log("Inserted ID:", result.insertId);
+
+            // Create the full URL
+            const postUrl = req.body.url.startsWith("http")
+                ? req.body.url
+                : `https://cybrixnova.com/blog/post/${req.body.url}`;
+
+            // ---------- DISCORD ROLE PING MESSAGE ----------
+            const message = `hey <@&1442595995925090375>! Cybrix just posted a new post on his blog with the category of: ${req.body.category} — check it out:\n${postUrl}`;
+            // ------------------------------------------------
+
+            try {
+                await axios.post(DISCORD_WEBHOOK, {
+                    content: message,    // role ping works only in "content"
+                    allowed_mentions: {
+                        parse: ["roles"] // REQUIRED so the ping actually works
+                    }
+                });
+
+                console.log("Webhook sent with role ping.");
+            } catch (e) {
+                console.error("Webhook error:", e);
+            }
+
             res.redirect('/admin/blogtools');
         }
     );
