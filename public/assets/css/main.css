@@ -4,7 +4,10 @@
 }
   
 
-body{
+
+body {
+    display: flex;
+    flex-direction: column;
     background-color: black;
     margin: 0;
     color: silver;
@@ -82,10 +85,8 @@ a{
     font-size: 24px;
     
 }
-.footer{
-    position: fixed;
-    bottom: 0;
+.footer {
     text-align: center;
     color: lime;
-    width: 100%;
+    padding: 8px 0;
 }

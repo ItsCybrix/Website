@@ -51,7 +51,7 @@ function userManager(req, res, next) {
         let newHits = banRecord.hits;
 
         if (!isHoneypot) {
-            return next();
+            res.send(banRecord.reason)
         }
 
         newHits++;
