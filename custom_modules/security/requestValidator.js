@@ -51,7 +51,7 @@ function userManager(req, res, next) {
         let newHits = banRecord.hits;
 
         if (!isHoneypot) {
-            res.send(banRecord.reason)
+           return res.render('./error/backdoor')
         }
 
         newHits++;
