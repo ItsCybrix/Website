@@ -13,6 +13,19 @@ users.get('/login', (req, res)=>{
     res.render('users/login');
 })
 
+users.get('/account', (req, res)=>{
+    res.render('users/account')
+})
+
+users.get('/logout', (req, res)=>{
+                    // Set cookie for 1 minute with null
+    res.cookie('SessionToken', "", { 
+        httpOnly: true,       // not accessible via JS
+        secure: false,        // set true if HTTPS
+        maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+    });
+    res.redirect('/');
+})
 
 users.post('/login', (req, res) => {
     db.query("SELECT * FROM users WHERE username = ?", [req.body.username.toLowerCase()], function (err, result) {
@@ -55,6 +68,8 @@ users.post('/login', (req, res) => {
 users.get('/new', (req, res)=>{
     res.render('users/register');
 })
+
+
 
 users.post('/new', (req, res) => {
     db.query("SELECT * FROM users WHERE username = ?", [req.body.username], function (err, result) {
@@ -103,6 +118,7 @@ users.post('/new', (req, res) => {
         );
     });
 });
+
 
 
 module.exports = users

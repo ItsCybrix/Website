@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Management - CybrixNova.com</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="site-main">
+        <div class="site-header">
+            <%- include('../includes/header') %>
+        </div>
+        <div class="main-content">
+            <div class="centered-box" style="max-width: fit-content;">
+                <h1>Welcome back, <span style="color: magenta;"><%- user.username %></span></h1>
+                <a href="/users/logout"><img src="/img/icons/win98/msg_error-0.png" height="24px" style="vertical-align: middle;"> LOGOUT</a>
+            </div>
+        </div>
+        <div class="footer">
+            <%- include('../includes/footer') %>
+        </div>
+    </div>
+    
+</body>
+</html>
