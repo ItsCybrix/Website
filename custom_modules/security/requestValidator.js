@@ -1,75 +1,56 @@
 const db = require('../sql/db_connector');
-const minimatch = require("minimatch").minimatch;
-
+const { minimatch } = require("minimatch");
 
 function userManager(req, res, next) {
-    const ip = req.ip; // remember: app.set('trust proxy', true) behind nginx
+    const ip = req.ip;
     const threshold = 3;
 
-    // 👇 Define honeypot routes with wildcards
     const banned_routes = [
-        "/wp-admin*",    // matches /wp-admin, /wp-admin/index.php, etc
-        "/*.env*",       // matches /.env, /.env.backup, /.env123
+        "/wp-admin*",
+        "/*.env*",
         "/env.sample",
         "/env.example",
         "/wp-*",
         "/install.php",
-        "/installer.php"
+        "/installer.php",
+        "/config*",
+        "*wlwmanifest.xml",
+        ".well-known*",
+        "*.php"
     ];
 
-    // Helper: check if the request URL matches any glob
     const isHoneypot = banned_routes.some(pattern =>
-        minimatch(req.url, pattern, { nocase: true }) // nocase = ignore case
+        minimatch(req.path, pattern, { nocase: true })
     );
 
-    db.query("SELECT * FROM banned_ips WHERE ip = ?", [ip], function (err, result) {
+    db.query("SELECT * FROM banned_ips WHERE ip = ?", [ip], (err, result) => {
         if (err) {
-            console.error("DB error in middleware:", err);
+            console.error("DB error:", err);
             return res.status(500).send("Server error");
         }
 
-        // Not in banned list
-        if (result.length === 0) {
-            if (isHoneypot) {
-                db.query(
-                    "INSERT INTO banned_ips (ip, hits, reason) VALUES (?, ?, ?)",
-                    [ip, 1, "Security system flagged this IP as malicious"],
-                    function (err2) {
-                        if (err2) console.error("DB error inserting IP:", err2);
-                        console.log(`⚠️ New IP logged: ${ip} accessed ${req.url} (1/${threshold})`);
-                        next();
-                    }
-                );
-            } else {
-                return next();
-            }
-            return;
+        const record = result[0];
+
+        // 🚫 Hard ban
+        if (record && record.hits >= threshold) {
+            res.locals.banReason = record.reason;
+            return res.status(404).render("./error/backdoor");
         }
 
-        // Already in banned list
-        const banRecord = result[0];
-        let newHits = banRecord.hits;
+        // 🪤 Honeypot hit
+        if (isHoneypot) {
+            db.query(
+                `INSERT INTO banned_ips (ip, hits, reason)
+                 VALUES (?, 1, ?)
+                 ON DUPLICATE KEY UPDATE hits = hits + 1`,
+                [ip, "Security system flagged this IP as malicious"]
+            );
 
-        if (!isHoneypot) {
-           return res.render('./error/backdoor')
+            res.locals.banReason = "Suspicious activity detected";
+            return res.status(404).render("./error/backdoor");
         }
 
-        newHits++;
-
-        db.query("UPDATE banned_ips SET hits = ? WHERE ip = ?", [newHits, ip], function (err2) {
-            if (err2) {
-                console.error("DB error updating hits:", err2);
-                return res.status(500).send("Server error");
-            }
-
-            if (newHits >= threshold) {
-                console.log(`🚫 Blocked IP ${ip} after ${newHits} hits on honeypot route ${req.url}`);
-                return res.status(403).send('🚫 Your IP is banned from this server. Reason: ' + banRecord.reason);
-            }
-
-            console.log(`⚠️ Honeypot hit from ${ip} (${newHits}/${threshold})`);
-            next();
-        });
+        return next();
     });
 }
 

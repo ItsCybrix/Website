@@ -15,7 +15,7 @@ users.get('/login', (req, res)=>{
 
 
 users.post('/login', (req, res) => {
-    db.query("SELECT * FROM users WHERE username = ?", [req.body.username], function (err, result) {
+    db.query("SELECT * FROM users WHERE username = ?", [req.body.username.toLowerCase()], function (err, result) {
         if (err) {
             return res.send('DATABASE ERROR! ' + err);
         }

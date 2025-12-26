@@ -6,7 +6,7 @@ const admin = express.Router()
 
 const db = require('../custom_modules/sql/db_connector')
 
-const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1442588448685953044/r93udVau_n6VvUTCvE1NK9Xxb2DQPQUWq06jgpjI41TZrdnj1FF7pKnoR-G5o9drFnp0"
+
 
 // === Middleware: check admin ===
 function requireAdmin(req, res, next) {
@@ -158,7 +158,7 @@ admin.post('/blogtools/new', (req, res) => {
             // ------------------------------------------------
 
             try {
-                await axios.post(DISCORD_WEBHOOK, {
+                await axios.post(process.env.DISCORD_WEBHOOK_URL, {
                     content: message,    // role ping works only in "content"
                     allowed_mentions: {
                         parse: ["roles"] // REQUIRED so the ping actually works
