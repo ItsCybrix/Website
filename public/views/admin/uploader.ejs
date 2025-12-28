@@ -24,9 +24,11 @@
             <div class="centered-box">
                 <form action="<%= uploadServer %>" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="session_token" value="<%- user.sessionToken %>"/><br/><br/>
-                    <input type="text" name="uploader" placeholder="Uploader Name" /><br/><br/>
+                    <input type="hidden" name="uploader" value="<%- user.username %>" /><br/><br/>
                     <input type="text" name="sharekey" placeholder="Share Key" /><br/><br/>
-                    <input type="text" name="visibility" placeholder="Visibility" /><br/><br/>
+                    <input type="radio" name="visibility" value="public" checked="checked" />Public<br/><br/>
+                    <input type="radio" name="visibility" value="private" />private<br/><br/>
+                    <input type="text" name="description" placeholder="File Upload Description" /><br/><br/>
                     <input type="text" name="origin_url" placeholder="Redirect URL (optional)" /><br/><br/>
                     <input type="file" name="file" /><br/><br/>
                     <button type="submit">Upload</button>
