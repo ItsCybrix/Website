@@ -203,6 +203,31 @@ admin.get('/upload', (req, res)=>{
     res.render('admin/uploader')
 })
 
+admin.get('/files', (req, res)=>{
+                    db.query("SELECT * FROM files", (err, result) => {
+        if (err) {
+            console.error("DB error in middleware:", err);
+            return res.status(500).send("Server error");
+        }
+
+        res.locals.files = result
+
+        if(process.env.UPLOADSERVER_URL == "http://127.0.0.1:5055/upload"){
+            res.locals.uploadServer = "http://127.0.0.1:5055"
+        }else{
+            res.locals.uploadServer = "https://s.cybrixnova.com"
+        }
+
+
+        res.render('admin/files');
+        
+
+
+
+
+    })
+})
+
 
 
 

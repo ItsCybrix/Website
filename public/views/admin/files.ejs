@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Files - Admin Dashboard</title>
+    <style>
+        tr:nth-child(even), th:nth-child(even) {
+  background-color: #D6EEEE;
+}
+    </style>
+</head>
+<body>
+    <div class="site-main">
+        <div class="site-header">
+            <%- include('../includes/header') %>
+        </div>
+        <div class="main-content">
+
+            <div class="centered-box" style="overflow-x: scroll; max-width: 100%;" >
+                <table>
+                    <tr>
+                        <td>ID</td>
+                        <td>UUID</td>
+                        <td>Filename</td>
+                        <td>Uploader</td>
+                        <td>Data Path</td>
+                        <td>Sharekey</td>
+                        <td>Visibility</td>
+                        <td>Description</td>
+                        <td>ACTIONS</td>
+                    </tr>
+                    <% files.forEach(file => { %>
+                            <td><%= file.id %></td>
+                            <td><%= file.UUID %></td>
+                            <td><%= file.filename %></td>
+                            <td><%= file.uploader %></td>
+                            <td><%= file.data_path %></td>
+                            <td><%= file.sharekey %></td>
+                            <td><%= file.visibility %></td>
+                            <td><%= file.description %></td>
+                            <td><a href="<%= uploadServer %>/file<%- file.UUID %>" target="_blank"><img src="/img/icons/win98/msagent-1.png"></a>
+                                <form action="<%= uploadServer %>/delete/<%= file.id %>" method="post" style="display:inline">
+    <input type="hidden" name="session_token" value="<%= user.sessionToken %>">
+    <button type="submit" class="link-button">
+        Delete
+    </button>
+</form>
+</td>
+                        </tr>
+                    <% }) %>
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
