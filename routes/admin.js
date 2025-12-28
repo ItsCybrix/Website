@@ -154,7 +154,7 @@ admin.post('/blogtools/new', (req, res) => {
                 : `https://cybrixnova.com/blog/post/${req.body.url}`;
 
             // ---------- DISCORD ROLE PING MESSAGE ----------
-            const message = `hey <@&1442595995925090375>! ${res.locals.user.username} just posted a new post on his blog called **${req.body.title}** with the category of: [${req.body.category}](https://cybrixnova.com/blog/category/${req.body.category}) — check it out:\n${postUrl}`;
+            const message = `hey <@&1442595995925090375>! ${res.locals.user.username} just posted a new post on the blog called **${req.body.title}** with the category of: [${req.body.category}](https://cybrixnova.com/blog/category/${req.body.category}) — check it out:\n${postUrl}`;
             // ------------------------------------------------
 
             try {
