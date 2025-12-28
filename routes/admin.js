@@ -198,6 +198,11 @@ admin.get('/blogtools/delete/:id', (req, res) => {
     );
 });
 
+admin.get('/upload', (req, res)=>{
+    res.locals.uploadServer = process.env.UPLOADSERVER_URL
+    res.render('admin/uploader')
+})
+
 
 
 

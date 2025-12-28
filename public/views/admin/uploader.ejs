@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Blog Tools - Cybrix Website</title>
+    <style>
+        tr:nth-child(even), th:nth-child(even) {
+  background-color: #D6EEEE;
+}
+    </style>
+</head>
+<body>
+    <div class="site-main">
+        <div class="site-header">
+            <%- include('../includes/header') %>
+        </div>
+        <div class="main-content">
+            <div class="admin-nav">
+                <a href="/admin/PageBuilder">PageBuilder</a>
+            </div>
+
+            <div class="centered-box">
+                <form action="<%= uploadServer %>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="session_token" value="<%- user.sessionToken %>"/><br/><br/>
+                    <input type="text" name="uploader" placeholder="Uploader Name" /><br/><br/>
+                    <input type="text" name="sharekey" placeholder="Share Key" /><br/><br/>
+                    <input type="text" name="visibility" placeholder="Visibility" /><br/><br/>
+                    <input type="text" name="origin_url" placeholder="Redirect URL (optional)" /><br/><br/>
+                    <input type="file" name="file" /><br/><br/>
+                    <button type="submit">Upload</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
