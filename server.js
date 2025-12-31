@@ -49,6 +49,7 @@ app.get('/:page', (req, res)=>{
             res.render('error/404')
         }else{
           res.locals.content = result[0].content  
+          res.locals.title = result[0].title  
 
 
           res.render('template')
