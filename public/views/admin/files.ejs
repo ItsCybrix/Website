@@ -44,7 +44,7 @@
                             <td><%= file.visibility %></td>
                             <td><%= file.description %></td>
                             <td><a href="<%= uploadServer %>/file/<%- file.UUID %>" target="_blank"><img src="/img/icons/win98/msagent-1.png"></a>
-                                <form action="<%= uploadServer %>/delete/<%= file.id %>" method="post" style="display:inline">
+                                <form action="<%= uploadServer %>/delete/<%= file.ID %>" method="post" style="display:inline">
     <input type="hidden" name="session_token" value="<%= user.sessionToken %>">
     <button type="submit" class="link-button">
         Delete
